@@ -1,4 +1,5 @@
 const cards=document.querySelector("#cards");
+const divbtn=document.querySelector("#divbtn");
 const button=document.querySelector("button");
 let page=1;
 async function contenu(page){
@@ -21,10 +22,12 @@ function render(){
     if (page==1){
         contenu(1);       
         button.innerHTML=">> Page suivante";
+        divbtn.classList.add("d-grid");
         page=2;
     }else{
         contenu(2);
         button.innerHTML="Page précédente <<";
+        divbtn.classList.remove("d-grid");
         page=1;
     }
 }
