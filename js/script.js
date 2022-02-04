@@ -1,8 +1,10 @@
-async function render(){
-    let content="";
-    let listUser= await fetch("https://reqres.in/api/users").then(response => response.json()).then(objetJson => objetJson.data);
-    const listUser2= await fetch("https://reqres.in/api/users?page=2").then(response => response.json()).then(objetJson => objetJson.data);
-    listUser=listUser.concat(listUser2);
+const cards=document.querySelector("#cards");
+const button=document.querySelector("button");
+let content;
+let page=1;
+async function contenu(page){
+    content="";
+    let listUser= await fetch(`https://reqres.in/api/users?page=${page}`).then(response => response.json()).then(objetJson => objetJson.data);
     listUser.forEach(user => {
         content += `<div class="col">
                         <div class="card h-100">
@@ -13,8 +15,20 @@ async function render(){
                             </div>
                         </div>
                     </div>`;
-    });
-    const cards=document.querySelector("#cards");
-    cards.innerHTML+=content;
+    }); 
+    cards.innerHTML=content;
 }
+function render(){
+    if (page==1){
+        contenu(1);       
+        button.innerHTML="Page suivant";
+        page=2;
+    }else{
+        contenu(2);
+        button.innerHTML="Page precedant";
+        page=1;
+    }
+}
+
 window.addEventListener("load",render);
+button.addEventListener("click",render);
