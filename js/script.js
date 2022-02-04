@@ -1,9 +1,8 @@
 const cards=document.querySelector("#cards");
 const button=document.querySelector("button");
-let content;
 let page=1;
 async function contenu(page){
-    content="";
+    let content="";
     let listUser= await fetch(`https://reqres.in/api/users?page=${page}`).then(response => response.json()).then(objetJson => objetJson.data);
     listUser.forEach(user => {
         content += `<div class="col">
