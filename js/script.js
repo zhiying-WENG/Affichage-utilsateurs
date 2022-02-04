@@ -21,11 +21,11 @@ async function contenu(page){
 function render(){
     if (page==1){
         contenu(1);       
-        button.innerHTML="Page suivant";
+        button.innerHTML=">> Page suivante";
         page=2;
     }else{
         contenu(2);
-        button.innerHTML="Page precedant";
+        button.innerHTML="Page précédente <<";
         page=1;
     }
 }
